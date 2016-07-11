@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Student Portal</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/DBMS.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+   <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">College Event Planner</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <!--<a href="#" data-toggle="modal" data-target="#myModal1">Sign In</a>-->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                        <ul id="login-dp" class="dropdown-menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                                <div class="help-block text-right"><a href="">Forgot Password</a></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> Remember Me
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="student.html">Student Portal</a>
+                        </li>
+                        <li>
+                            <a href="RSO.html">RSO Portal</a>
+                        </li>
+                        <li>
+                        <a href="college.html">College Portal</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Event Portal <b class="caret"></b></a>
+                            <ul id="event-dp" class="dropdown-menu" style="background-color:rgba(255,255,255,.8);">
+                                <li>
+                                    <a href="event.html">View Events</a>
+                                </li>
+                                <li>
+                                    <a href="eventDetails.html">Create Event</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+            <!--#mymodal1-->
+            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel1">Sign In</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-inline">
+                              <div class="form-group">
+                                <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="exampleInputPassword3">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign in</button>
+                            <div class="checkbox">
+                                <label>
+                                  <input type="checkbox"> Remember me
+                              </label>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--/#mymodal1-->
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <br>
+            <h1 class="page-header">RSO Portal
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Image Header -->
+    <div class="row">
+        <div class="col-lg-12">
+            <img class="img-responsive" src="images/rso.jpg" alt="">
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Service Tabs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header">Ready to make an RSO?</h2>
+        </div>
+        <div class="col-lg-12">
+
+            <ul id="myTab" class="nav nav-tabs nav-justified">
+                <li class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-tree"></i> What is an RSO?</a>
+                </li>
+                <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-list"></i> Register A RSO</a>
+                </li>
+            </ul>
+
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="service-one">
+                    <h4>What is an RSO?</h4>
+                    <p>Say what an RSO is.</p>
+                </div>
+                <div class="tab-pane fade" id="service-two">
+                    <h4>Register A RSO</h4>
+                    <form>
+                    <fieldset class="form-group">
+                            <label for="registerNameRso">RSO Name</label>
+                            <input type="text" class="form-control" id="registerNameRso" placeholder="ex. Pokemon Club">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="registerDescRso">RSO Description</label>
+                            <input type="text" class="form-control" id="registerDescRso" placeholder="Last Name">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="registerAdminRso">Email Address of Admin</label>
+                            <input type="email" class="form-control" id="registerAdminRso" placeholder="Enter email">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="registermem1Rso">Email Addresses of four members</label>
+                            <input type="email" class="form-control" id="registermem1Rso" placeholder="Member 1">
+                            <input type="email" class="form-control" id="registermem2Rso" placeholder="Member 2">
+                            <input type="email" class="form-control" id="registermem3Rso" placeholder="Member 3">
+                            <input type="email" class="form-control" id="registermem4Rso" placeholder="Member 4">
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Copyright &copy; College Event Planner 2016</p>
+        </div>
+    </div>
+</footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
