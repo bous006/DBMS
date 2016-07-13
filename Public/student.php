@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$con = mysqli_connect("localhost","root","", "dbms project");
+
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+?>
 
 <head>
 
@@ -23,7 +32,6 @@
 </head>
 
 <body>
-
  <!-- Navigation -->
  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -49,12 +57,12 @@
                                 <div class="col-md-12">
                                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
                                         <div class="form-group">
-                                            <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                            <label class="sr-only" for="loginUserName">Username (Usually Email)</label>
+                                            <input type="text" class="form-control" id="loginUserName" placeholder="Username (Usually Email)" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                            <label class="sr-only" for="loginPassword">Password</label>
+                                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
                                             <div class="help-block text-right"><a href="">Forgot Password</a></div>
                                         </div>
                                         <div class="form-group">
@@ -87,69 +95,7 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-        <!--#mymodal1-->
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel1">Sign In</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-inline">
-                          <div class="form-group">
-                            <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="exampleInputPassword3">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> Remember me
-                          </label>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!--/#mymodal1-->
-</nav>
-        <!-- /.container -->
-        <!--#mymodal1-->
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel1">Sign In</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-inline">
-                          <div class="form-group">
-                            <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="exampleInputPassword3">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> Remember me
-                          </label>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!--/#mymodal1-->
-</nav>
+    </nav>
 
 <!-- Page Content -->
 <div class="container">
@@ -195,8 +141,8 @@
                     <h4>Register As Student</h4>
                     <form>
                         <fieldset class="form-group">
-                            <label for="registerFirstStudent">Select Your School</label>
-                            <select class="form-control form-control-sm">
+                            <label for="registerFirstStudent">Select Your School (Can't find your school? Register it on the "College Portal")</label>
+                            <select class="form-control form-control-sm" id="selectSchool">
                                 <option>UCF</option>
                                 <option>UF</option>
                                 <option>FSU</option>
@@ -213,23 +159,59 @@
                             <input type="text" class="form-control" id="registerLastStudent" placeholder="Last Name">
                         </fieldset>
                         <fieldset class="form-group">
-                            <label for="registerEmailStudent">Email address</label>
+                            <label for="registerEmailStudent">Email address (This will be your username)</label>
                             <input type="email" class="form-control" id="registerEmailStudent" placeholder="Enter email">
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="registerPasswordStudent">Password</label>
                             <input type="password" class="form-control" id="registerPasswordStudent" placeholder="Password">
                         </fieldset>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">Send Me Promotional Emails and Offers
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" value="submit" name="submit" id="submit">Register</button>
                     </form>
                 </div>
-            </div>
+                <?php
 
+                if (isset($_POST['submit']))
+                {
+                	$name = -1;
+                	$university_id = -1;
+                	$username = -1;
+                	$passwordhash = -1;
+
+                	$con = mysqli_connect("localhost","root","", "dbms project");
+					// Check connection
+                	if (mysqli_connect_errno())
+                	{
+                		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                	}
+
+                	$firstname = $_POST["registerFirstStudent"];
+                	$name = $firstname . $_POST[" registerLastStudent"];
+                	$university_id = $_POST["selectSchool"];
+                	$username = $_POST["registerEmailStudent"];
+                	$passwordhash = $_POST["registerPasswordStudent"];
+
+                	$sql = mysqli_query($connect, "INSERT INTO users ( name, university_id, username, passwordhash)
+                		VALUES ('$name', '$university_id', '$username', '$passwordhash')")
+                	or die(mysqli_error($connect));
+
+                	$uid = mysqli_insert_id($connect);
+
+                	$sql .= mysqli_query($connect, "INSERT INTO students ( uid, username, passwordhash, university_id) VALUES ('$uid', '$username', '$passwordhash', '$university_id')") or die(mysqli_error($connect));
+
+                	$test = mysqli_quert($connect, "SELECT name FROM users");
+                	echo "$test";
+
+                	if ($conn->multi_query($sql) === TRUE) {
+                		echo "New records created successfully";
+                	} else {
+                		echo "Error: " . $sql . "<br>" . $conn->error;
+                	}
+
+                	mysqli_close($connect);
+                }
+                ?>
+            </div>
         </div>
     </div>
     <hr>
@@ -255,3 +237,4 @@
 </body>
 
 </html>
+

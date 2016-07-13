@@ -25,7 +25,7 @@
 <body>
 
    <!-- Navigation -->
-   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+ <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -49,12 +49,12 @@
                                 <div class="col-md-12">
                                     <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
                                         <div class="form-group">
-                                            <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                            <label class="sr-only" for="loginUserName">Username (Usually Email)</label>
+                                            <input type="text" class="form-control" id="loginUserName" placeholder="Username (Usually Email)" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                            <label class="sr-only" for="loginPassword">Password</label>
+                                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
                                             <div class="help-block text-right"><a href="">Forgot Password</a></div>
                                         </div>
                                         <div class="form-group">
@@ -80,44 +80,14 @@
                         <a href="college.html">College Portal</a>
                     </li>
                     <li class="dropdown">
-                        <a href="event.html">View Events</a>
+                                <a href="event.html">View Events</a>
                     </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-        <!--#mymodal1-->
-        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel1">Sign In</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-inline">
-                          <div class="form-group">
-                            <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="exampleInputPassword3">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> Remember me
-                          </label>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!--/#mymodal1-->
-</nav>
+    </nav>
 
 <!-- Page Content -->
 <div class="container">
@@ -137,8 +107,6 @@
     <div class="row">
 
         <div class="col-md-8">
-            <!-- Map Column     
-            <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=28.6024,81.2001&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>-->
             <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script><div style='overflow:hidden;height:400px;width:750px;'><div id='gmap_canvas' style='height:400px;width:750px;'></div><div><small><a href="http://embedgooglemaps.com">                                   embed google maps                           </a></small></div><div><small><a href="https:/disclaimergenerator.net">disclaimer example</a></small></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><script type='text/javascript'>function init_map(){var myOptions = {zoom:15,center:new google.maps.LatLng(28.5878933,-81.19930850000003),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(28.5878933,-81.19930850000003)});infowindow = new google.maps.InfoWindow({content:'<strong>Event Name</strong><br>UCF<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
         </div>
 
@@ -186,19 +154,19 @@
                     <div class="radio">
                         <label for="radio1">Rate this Event</label>
                         <label>
-                            <input type="radio" name="rating" id="rating1" value="option1" id="radio1"> 1
+                            <input type="radio" name="rating" id="rating1" value="1" id="radio1"> 1
                         </label>
                         <label>
-                            <input type="radio" name="rating" id="rating2" value="option2"> 2
+                            <input type="radio" name="rating" id="rating2" value="2"> 2
                         </label>
                         <label>
-                            <input type="radio" name="rating" id="rating3" value="option3"> 3
+                            <input type="radio" name="rating" id="rating3" value="3"> 3
                         </label>
                         <label>
-                            <input type="radio" name="rating" id="rating4" value="option4"> 4
+                            <input type="radio" name="rating" id="rating4" value="4"> 4
                         </label>
                         <label>
-                            <input type="radio" name="rating" id="rating5" value="option5"> 5
+                            <input type="radio" name="rating" id="rating5" value="5"> 5
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
