@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,107 +25,99 @@
 <body>
 
    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">College Event Planner</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <!--<a href="#" data-toggle="modal" data-target="#myModal1">Sign In</a>-->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                        <ul id="login-dp" class="dropdown-menu">
-                            <li>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                            <div class="form-group">
-                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                                <div class="help-block text-right"><a href="">Forgot Password</a></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox"> Remember Me
-                                                </label>
-                                            </div>
-                                        </form>
-                                    </div>
+ <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">College Event Planner</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <!--<a href="#" data-toggle="modal" data-target="#myModal1">Sign In</a>-->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                    <ul id="login-dp" class="dropdown-menu">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                            <div class="help-block text-right"><a href="">Forgot Password</a></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> Remember Me
+                                            </label>
+                                        </div>
+                                    </form>
                                 </div>
-                            </li>
-                        </ul>
-                        <li>
-                            <a href="student.html">Student Portal</a>
-                        </li>
-                        <li>
-                            <a href="RSO.html">RSO Portal</a>
-                        </li>
-                        <li>
-                        <a href="college.html">College Portal</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Event Portal <b class="caret"></b></a>
-                            <ul id="event-dp" class="dropdown-menu" style="background-color:rgba(255,255,255,.8);">
-                                <li>
-                                    <a href="event.html">View Events</a>
-                                </li>
-                                <li>
-                                    <a href="eventDetails.html">Create Event</a>
-                                </li>
-                            </ul>
+                            </div>
                         </li>
                     </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+                    <li>
+                        <a href="student.html">Student Portal</a>
+                    </li>
+                    <li>
+                        <a href="RSO.html">RSO Portal</a>
+                    </li>
+                    <li>
+                        <a href="college.html">College Portal</a>
+                    </li>
+                    <li class="dropdown">
+                                <a href="event.html">View Events</a>
+                    </li>
+                </ul>
             </div>
-            <!-- /.container -->
-            <!--#mymodal1-->
-            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel1">Sign In</h4>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+        <!--#mymodal1-->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel1">Sign In</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-inline">
+                          <div class="form-group">
+                            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
                         </div>
-                        <div class="modal-body">
-                            <form class="form-inline">
-                              <div class="form-group">
-                                <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label class="sr-only" for="exampleInputPassword3">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
-                            <div class="checkbox">
-                                <label>
-                                  <input type="checkbox"> Remember me
-                              </label>
-                          </div>
-                      </form>
-                  </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="exampleInputPassword3">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                        <div class="checkbox">
+                            <label>
+                              <input type="checkbox"> Remember me
+                          </label>
+                      </div>
+                  </form>
               </div>
           </div>
       </div>
-      <!--/#mymodal1-->
-  </nav>
+  </div>
+  <!--/#mymodal1-->
+</nav>
 
   <!-- Page Content -->
   <div class="container">
@@ -164,11 +156,11 @@
 
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="service-one">
-                    <h4>Can't find your college or university?</h4>
-                    <p>If your university or college is not listed you can register it here.</p>
+                    <h4>Basic Info</h4>
+                    <p>I don't care to write this.</p>
                 </div>
                 <div class="tab-pane fade" id="service-two">
-                    <h4>Register As Super ADMIN</h4>
+                    <h4>Register As Super Admin</h4>
                     <form>
                         <fieldset class="form-group">
                             <label for="registerFirstUniversity">First Name</label>
@@ -189,14 +181,14 @@
                         <hr>
                         <fieldset class="form-group">
                             <label for="registerNameUniversity">School Name</label>
-                            <input type="text" class="form-control" id="registerNameUniversity" placeholder="University of Central Florida">
+                            <input type="text" class="form-control" id="registerNameUniversity" placeholder="UCF">
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="registerDescUniversity">School Description</label>
                             <input type="text" class="form-control" id="registerDescUniversity" placeholder="A little tidbit about your school.">
                         </fieldset>
                         <fieldset class="form-group">
-                            <label for="registerAttendUniversity">School Attendance</label>
+                            <label for="registerAttendUniversity">School Attendence</label>
                             <input type="text" class="form-control" id="registerAttendUniversity" placeholder="How many students attend your school?">
                         </fieldset>
                         <fieldset class="form-group">
