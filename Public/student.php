@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-$con = mysqli_connect("localhost","root","", "dbms project");
-
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-?>
 
 <head>
 
@@ -79,16 +70,16 @@ if (mysqli_connect_errno())
                         </li>
                     </ul>
                     <li>
-                        <a href="student.html">Student Portal</a>
+                        <a href="student.php">Student Portal</a>
                     </li>
                     <li>
-                        <a href="RSO.html">RSO Portal</a>
+                        <a href="RSO.php">RSO Portal</a>
                     </li>
                     <li>
-                        <a href="college.html">College Portal</a>
+                        <a href="college.php">College Portal</a>
                     </li>
                     <li class="dropdown">
-                                <a href="event.html">View Events</a>
+                                <a href="event.php">View Events</a>
                     </li>
                 </ul>
             </div>
@@ -125,7 +116,7 @@ if (mysqli_connect_errno())
         </div>
         <div class="col-lg-12">
 
-            <ul id="myTab" class="nav nav-tabs nav-justified">
+            <!----><ul id="myTab" class="nav nav-tabs nav-justified">
                 <li class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-tree"></i> Basic Info</a>
                 </li>
                 <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-list"></i> Register As Student</a>
@@ -139,10 +130,10 @@ if (mysqli_connect_errno())
                 </div>
                 <div class="tab-pane fade" id="service-two">
                     <h4>Register As Student</h4>
-                    <form>
+                    <form action="#" method="post">
                         <fieldset class="form-group">
                             <label for="registerFirstStudent">Select Your School (Can't find your school? Register it on the "College Portal")</label>
-                            <select class="form-control form-control-sm" id="selectSchool">
+                            <select class="form-control form-control-sm" id="selectSchool" name="selectSchool">
                                 <option>UCF</option>
                                 <option>UF</option>
                                 <option>FSU</option>
@@ -152,65 +143,23 @@ if (mysqli_connect_errno())
                         </fieldset>                       
                         <fieldset class="form-group">
                             <label for="registerFirstStudent">First Name</label>
-                            <input type="text" class="form-control" id="registerFirstStudent" placeholder="First Name">
+                            <input type="text" class="form-control" id="registerFirstStudent" placeholder="First Name" name="registerFirstStudent">
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="registerLastStudent">Last Name</label>
-                            <input type="text" class="form-control" id="registerLastStudent" placeholder="Last Name">
+                            <input type="text" class="form-control" id="registerLastStudent" placeholder="Last Name" name="registerLastStudent">
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="registerEmailStudent">Email address (This will be your username)</label>
-                            <input type="email" class="form-control" id="registerEmailStudent" placeholder="Enter email">
+                            <input type="email" class="form-control" id="registerEmailStudent" placeholder="Enter email" name="registerEmailStudent">
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="registerPasswordStudent">Password</label>
-                            <input type="password" class="form-control" id="registerPasswordStudent" placeholder="Password">
+                            <input type="password" class="form-control" id="registerPasswordStudent" placeholder="Password" name="registerPasswordStudent">
                         </fieldset>
-                        <button type="submit" class="btn btn-primary" value="submit" name="submit" id="submit">Register</button>
+                        <input id="submit" name="submit" type="submit" value="submit" class="btn btn-primary">
                     </form>
-                </div>
-                <?php
-
-                if (isset($_POST['submit']))
-                {
-                	$name = -1;
-                	$university_id = -1;
-                	$username = -1;
-                	$passwordhash = -1;
-
-                	$con = mysqli_connect("localhost","root","", "dbms project");
-					// Check connection
-                	if (mysqli_connect_errno())
-                	{
-                		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                	}
-
-                	$firstname = $_POST["registerFirstStudent"];
-                	$name = $firstname . $_POST[" registerLastStudent"];
-                	$university_id = $_POST["selectSchool"];
-                	$username = $_POST["registerEmailStudent"];
-                	$passwordhash = $_POST["registerPasswordStudent"];
-
-                	$sql = mysqli_query($connect, "INSERT INTO users ( name, university_id, username, passwordhash)
-                		VALUES ('$name', '$university_id', '$username', '$passwordhash')")
-                	or die(mysqli_error($connect));
-
-                	$uid = mysqli_insert_id($connect);
-
-                	$sql .= mysqli_query($connect, "INSERT INTO students ( uid, username, passwordhash, university_id) VALUES ('$uid', '$username', '$passwordhash', '$university_id')") or die(mysqli_error($connect));
-
-                	$test = mysqli_quert($connect, "SELECT name FROM users");
-                	echo "$test";
-
-                	if ($conn->multi_query($sql) === TRUE) {
-                		echo "New records created successfully";
-                	} else {
-                		echo "Error: " . $sql . "<br>" . $conn->error;
-                	}
-
-                	mysqli_close($connect);
-                }
-                ?>
+                </div>                
             </div>
         </div>
     </div>
@@ -228,7 +177,47 @@ if (mysqli_connect_errno())
 </div>
 <!-- /.container -->
 
-<!-- jQuery -->
+<?php
+
+                if (isset($_POST['submit']))
+                {
+                    $first =  -1;
+                    $last = -1;
+                    $university_id = -1;
+                    $username = -1;
+                    $passwordhash = -1;
+
+                    $conn = mysqli_connect("localhost","root","root", "dbms");
+                    // Check connection
+                    if (mysqli_connect_errno())
+                    {
+                        echo "Failed to connect to my MySQL: " . mysqli_connect_error();
+                    }
+
+                   
+                    $first =  $_POST["registerFirstStudent"];
+                    $last = $_POST["registerLastStudent"];
+                    $university_id = $_POST["selectSchool"];
+                    $username = $_POST["registerEmailStudent"];
+                    $passwordhash = $_POST["registerPasswordStudent"];
+
+                    $sql = mysqli_query($conn, "INSERT INTO users (firstName, lastName, university_id, username, passwordhash, privilegeLevel)VALUES ('$first','$last','$university_id', '$username', '$passwordhash', '0')") or die(mysqli_error($conn));
+
+                    $uid = mysqli_insert_id($conn);
+
+                    $sql = mysqli_query($conn, "INSERT INTO students (university_id, username, passwordhash) VALUES ('$university_id', '$username', '$passwordhash')") or die(mysqli_error($conn));
+
+                    if ($conn->multi_query($sql) === TRUE) {
+                        echo "New records created successfully";
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
+
+                    mysqli_close($conn);
+                }
+               //
+                ?>
+.<!-- jQuery -->
 <script src="js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
