@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">College Event Planner</a>
+            <a class="navbar-brand" href="index.php">College Event Planner</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -193,6 +193,12 @@
                             <label for="registerNumberEvent">Contact Phone Number</label>
                             <input type="text" class="form-control" id="registerNumberEvent" placeholder="(xxx)xxx - xxxx" name="registerNumberEvent">
                         </fieldset>
+                        <fieldset class="form-group">
+                            <label for="registerStreetEvent">Where is your Event happening?</label>
+                            <input type="text" class="form-control" id="registerStreetEvent" placeholder="Street" name="registerStreetEvent">
+                            <input type="text" class="form-control" id="registerCityEvent" placeholder="City" name="registerCityEvent">
+                            <input type="text" class="form-control" id="registerZipEvent" placeholder="Zip Code" name="registerZipEvent">
+                        </fieldset>
                         <input id="submit" name="submit" type="submit" value="submit" class="btn btn-primary">
                     </form>
         </div>
@@ -225,6 +231,9 @@
                     $name = -1;
                     $time = -1;
                     $type = -1;
+                    $street = -1;
+                    $city = -1;
+                    $zip = -1;
 
 
                     $conn = mysqli_connect("localhost","root","root", "dbms");
@@ -242,6 +251,9 @@
                     $name = $_POST["registerNameEvent"];
                     $time = $_POST["registerTimeEvent"];
                     $type = $_POST["registerTypeEvent"];
+                    $street = $_POST["registerStreetUniversity"];
+                    $city = $_POST["registerCityUniversity"];
+                    $zip = $_POST["registerZipUniversity"];
 
                     $sql = mysqli_query($conn, "INSERT INTO event (email, phone_num, date, description, name, time, type)VALUES ('$email','$phone_num','$date', '$description', '$name', 'time', 'type')") or die(mysqli_error($conn));
 
