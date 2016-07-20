@@ -1,4 +1,6 @@
-﻿﻿
+﻿﻿<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,8 +27,16 @@
 
 
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
         <?php
-
+                    
                     $conn = mysqli_connect("localhost","root","root", "dbms");
                     // Check connection
                     if (mysqli_connect_errno())
@@ -44,15 +54,17 @@
                     $city = -1;
                     $street = -1;
                     $zip = -1;
+                
+                    
+                    $var_value = $_GET['eventid'];
 
-                    $sql = "SELECT eventid, email, phone_num, date, description, name, time, type, city, street, zip  
-                            FROM event e
-                            WHERE e.name = 'Blood Drive'
-                            ";
+                    $sql = "SELECT eventid, email, phone_num, date, description, name, time, type, city, street, zip FROM event WHERE eventid = $var_value";
+
+                    //(SELECT eventid FROM selected_event WHERE flagged = 1)";
 
                     $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
+                    //if ($result->num_rows > 0) {
 
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
@@ -89,12 +101,9 @@
                         $zip = $row["zip"];              
 
                      }
-
-                    } else {
-
-                     echo "0 results";
-
-                    }
+                     //} else {
+                     //   echo "no results.";
+                     //}        
         ?>
         <br>
         <br>
@@ -115,36 +124,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <!--<a href="#" data-toggle="modal" data-target="#myModal1">Sign In</a>-->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                    <ul id="login-dp" class="dropdown-menu">
-                        <li>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                        <div class="form-group">
-                                            <label class="sr-only" for="loginUserName">Username (Usually Email)</label>
-                                            <input type="text" class="form-control" id="loginUserName" placeholder="Username (Usually Email)" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="sr-only" for="loginPassword">Password</label>
-                                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
-                                            <div class="help-block text-right"><a href="">Forgot Password</a></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Remember Me
-                                            </label>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                            
                     <li>
                         <a href="student.php">Student Portal</a>
                     </li>
@@ -209,7 +189,9 @@
                     <a href="mailto:name@example.com"><?php echo $email ?></a>
                 </p>
                 <p><i class="fa fa-clock-o"></i> 
-                   <?php echo $date." ".$time ?></p>
+                   <?php echo $date." ".$time ?>
+                   <br>
+                   <?php echo $_GET['eventid'] ?></p>
                     <ul class="list-unstyled list-inline list-social-icons">
                         <li>
                             <a href="http:www.facebook.com"><i class="fa fa-facebook-square fa-2x"></i></a>
@@ -265,11 +247,7 @@
 
                      }
 
-                    } else {
-
-                     echo "0 results";
-
-                    }
+                    } 
                     ?>
 
                 </div>
@@ -278,29 +256,9 @@
 
                 <div class="col-md-12">
                     <form>
-                        <fieldset class="form-group">
-                        <label for="commentEvent">Comment on this Event</label>
-                        <textarea class="form-control" id="commentEvent" rows="3"></textarea>
-                    </fieldset>
-                    <div class="radio">
-                        <label for="radio1">Rate this Event</label>
-                        <label>
-                            <input type="radio" name="rating" id="rating1" value="1" id="radio1"> 1
-                        </label>
-                        <label>
-                            <input type="radio" name="rating" id="rating2" value="2"> 2
-                        </label>
-                        <label>
-                            <input type="radio" name="rating" id="rating3" value="3"> 3
-                        </label>
-                        <label>
-                            <input type="radio" name="rating" id="rating4" value="4"> 4
-                        </label>
-                        <label>
-                            <input type="radio" name="rating" id="rating5" value="5"> 5
-                        </label>
-                    </div>
-                    <input id= "submit" name="submit" button type="submit" class="btn btn-primary"></button>
+                    <div class="fb-comments" data-href="http://localhost/Public/Public/eventDetails.php" data-width="600" data-numposts="5"></div>
+                    <div class="fb-like" data-href="http://localhost/Public/Public/eventDetails.php" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                
               </form>
                 </div>
             </div>

@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+                    $conn = new mysqli("localhost", "root", "root", "dbms");
+                    if ($conn->connect_errno) {
+                        echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
+                    }
+
+                    $query = mysqli_query($conn, "SELECT name FROM university ");
+
+                    //$query = "SELECT name FROM university";
+                    //$result = $conn->query($query);
+
+                    while($row = $query->fetch_assoc()){
+                        $categories[] = array("name" => $row['name']);
+                    }
+                    
+                    $jsonUniversity = json_encode($categories);
+                                mysqli_close($conn);
+
+                ?>
+
 <head>
 
     <meta charset="utf-8">
@@ -19,6 +39,19 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script type='text/javascript'>
+     
+      function loadCategories(){
+      <?php
+        echo "var categories = $jsonUniversity; \n";
+      ?>
+        var select = document.getElementById("selectschool");
+        for(var i = 0; i < categories.length; i++){
+          select.options[i] = new Option(categories[i].name);          
+        }
+      }
+      </script>
 
 </head>
 
@@ -103,13 +136,36 @@
                     <form action="#" method="post">
                         <fieldset class="form-group">
                             <label for="registerFirstStudent">Select Your School (Can't find your school? Register it on the "College Portal")</label>
-                            <select class="form-control form-control-sm" id="selectSchool" name="selectSchool">
+                            <!--<select class="form-control form-control-sm" id="selectSchool" name="selectSchool">
                                 <option>UCF</option>
                                 <option>UF</option>
                                 <option>FSU</option>
                                 <option>UGA</option>
                                 <option>MIT</option>
-                            </select>
+                            </select>-->
+                            <div class="dropdown" >                                
+                                
+                                    <?php
+
+                                    $conn = mysqli_connect("localhost","root","root", "dbms");
+                    // Check connection
+                    if (mysqli_connect_errno())
+                    {
+                        echo "Failed to connect to my MySQL: " . mysqli_connect_error();
+                    }
+
+                                    $sql = "SELECT name FROM university";
+$result = $conn->query($sql);
+
+                                    echo "<select name='selectSchool' id='selectSchool'>";
+
+                                    while ($row = mysql_fetch_array($result)) {
+                                        echo '<option value="'.$row["name"].'">'.$row["name"].'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
+                                
+                            </div>
                         </fieldset>                       
                         <fieldset class="form-group">
                             <label for="registerFirstStudent">First Name</label>

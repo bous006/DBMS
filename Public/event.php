@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,36 +100,86 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="service-one">
                 <h4>Events</h4>
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Location</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><a href="eventDetails.php">Pokemon Go</a></td>
-                        <td>Every Day</td>
-                        <td>All Day</td>
-                        <td>Everywhere</td>
-                    </tr>
+                     <div class="container">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td><a href="eventDetails.php">Pokemon Go</a></td>
-                        <td>Every Day</td>
-                        <td>All Day</td>
-                        <td>Everywhere</td>
+                        <th>Name</th>
+
+                        <th>Description</th>
+
+                        <th>Date</th>
+
+                        <th>Time</th>
+
+                        <th>Contact Email</th>
+
+                        <th>Contact Phone</th>
+
+                        <th>Address</th>                        
+
+                        <th>Category</th>
+
+                        <th>View Event</th>
+
+
                     </tr>
-                    <tr>
-                        <td><a href="eventDetails.php">Pokemon Go</a></td>
-                        <td>Every Day</td>
-                        <td>All Day</td>
-                        <td>Everywhere</td>
-                    </tr>
-                </tbody>
-            </table>
+                </thead>
+
+                <tbody>
+                    <?php
+                    
+                    $conn = new mysqli("localhost", "root", "root", "dbms");
+                    if ($conn->connect_errno) {
+                        echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
+                    }
+                    // Retrieve all the data from the "tblstudent" table
+                    $result = mysqli_query($conn, "SELECT * FROM event") or die(mysql_error());
+                    // store the record of the "tblstudent" table into $row
+                    
+                    while ($row = mysqli_fetch_array($result)) {
+                    // Print out the contents of the entry
+
+                        echo '
+                        <tr>
+                            ';
+                            echo '
+                            <td>' . $row['name'] . '</td>';
+                            echo '
+                            <td>' . $row['description'] . '</td>';
+                            echo '
+                            <td>' . $row['date'] . '</td>';
+                            echo '
+                            <td>' . $row['time'] . '</td>';
+
+                            echo '
+                            <td>' . $row['email'] . '</td>';
+                            echo '
+                            <td>' . $row['phone_num'] . '</td>';
+                            echo '
+                            <td>' . $row['street'] . ' ' . $row['city'] . ' ' . $row['zip'] . '</td>';                            
+                            echo '
+                            <td>' . $row['type'] . '</td>';
+                            
+                            $curr_eventid = $row['eventid'];
+                            echo '<td>' . '<a href="eventDetails.php?eventid=' . $curr_eventid . '">View Event</a>' .'</td>';
+                           
+                           //if (!empty($_POST['view-submit']))
+                            //{
+                                //$var_value = $row['eventid'];
+                               // $_SESSION['selected_eventid'] = $var_value;
+                           // }
+                        }
+
+                        error_reporting(E_ALL);
+                        mysqli_close($conn);
+                        ?>
+
+                    </tbody>
+
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
         <div class="tab-pane fade" id="service-two">
             <h4>Create An Event</h4>
@@ -221,11 +274,11 @@
                     $name = $_POST["registerNameEvent"];
                     $time = $_POST["registerTimeEvent"];
                     $type = $_POST["registerTypeEvent"];
-                    $street = $_POST["registerStreetUniversity"];
-                    $city = $_POST["registerCityUniversity"];
-                    $zip = $_POST["registerZipUniversity"];
+                    $street = $_POST["registerStreetEvent"];
+                    $city = $_POST["registerCityEvent"];
+                    $zip = $_POST["registerZipEvent"];
 
-                    $sql = mysqli_query($conn, "INSERT INTO event (email, phone_num, date, description, name, time, type)VALUES ('$email','$phone_num','$date', '$description', '$name', 'time', 'type')") or die(mysqli_error($conn));
+                    $sql = mysqli_query($conn, "INSERT INTO event (email, phone_num, date, description, name, time, type, street, city, zip)VALUES ('$email','$phone_num','$date', '$description', '$name', '$time', '$type', '$street', '$city', '$zip')") or die(mysqli_error($conn));
 
                     $eventid = mysqli_insert_id($conn);
 
