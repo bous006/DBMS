@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+                    $conn = new mysqli("localhost", "root", "root", "dbms");
+                    if ($conn->connect_errno) {
+                        echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
+                    }
+
+                    $query = mysqli_query($conn, "SELECT name FROM university ");
+
+                    //$query = "SELECT name FROM university";
+                    //$result = $conn->query($query);
+
+                    while($row = $query->fetch_assoc()){
+                        $categories[] = array("name" => $row['name']);
+                    }
+                    
+                    $jsonUniversity = json_encode($categories);
+                                mysqli_close($conn);
+
+                ?>
+
 <head>
 
     <meta charset="utf-8">
@@ -20,6 +40,19 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <script type='text/javascript'>
+     
+      function loadCategories(){
+      <?php
+        echo "var categories = $jsonUniversity; \n";
+      ?>
+        var select = document.getElementById("selectschool");
+        for(var i = 0; i < categories.length; i++){
+          select.options[i] = new Option(categories[i].name);          
+        }
+      }
+      </script>
+
 </head>
 
 <body>
@@ -34,41 +67,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">College Event Planner</a>
+            <a class="navbar-brand" href="index.php">College Event Planner</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <!--<a href="#" data-toggle="modal" data-target="#myModal1">Sign In</a>-->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                    <ul id="login-dp" class="dropdown-menu">
-                        <li>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                        <div class="form-group">
-                                            <label class="sr-only" for="loginUserName">Username (Usually Email)</label>
-                                            <input type="text" class="form-control" id="loginUserName" placeholder="Username (Usually Email)" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="sr-only" for="loginPassword">Password</label>
-                                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
-                                            <div class="help-block text-right"><a href="">Forgot Password</a></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Remember Me
-                                            </label>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
                     <li>
                         <a href="student.php">Student Portal</a>
                     </li>
@@ -133,13 +136,36 @@
                     <form action="#" method="post">
                         <fieldset class="form-group">
                             <label for="registerFirstStudent">Select Your School (Can't find your school? Register it on the "College Portal")</label>
-                            <select class="form-control form-control-sm" id="selectSchool" name="selectSchool">
+                            <!--<select class="form-control form-control-sm" id="selectSchool" name="selectSchool">
                                 <option>UCF</option>
                                 <option>UF</option>
                                 <option>FSU</option>
                                 <option>UGA</option>
                                 <option>MIT</option>
-                            </select>
+                            </select>-->
+                            <div class="dropdown" >                                
+                                
+                                    <?php
+
+                                    $conn = mysqli_connect("localhost","root","root", "dbms");
+                    // Check connection
+                    if (mysqli_connect_errno())
+                    {
+                        echo "Failed to connect to my MySQL: " . mysqli_connect_error();
+                    }
+
+                                    $sql = "SELECT name FROM university";
+$result = $conn->query($sql);
+
+                                    echo "<select name='selectSchool' id='selectSchool'>";
+
+                                    while ($row = mysql_fetch_array($result)) {
+                                        echo '<option value="'.$row["name"].'">'.$row["name"].'</option>';
+                                    }
+                                    echo "</select>";
+                                    ?>
+                                
+                            </div>
                         </fieldset>                       
                         <fieldset class="form-group">
                             <label for="registerFirstStudent">First Name</label>
@@ -210,7 +236,7 @@
                     if ($conn->multi_query($sql) === TRUE) {
                         echo "New records created successfully";
                     } else {
-                        echo "Error: " . $sql . "<br>" . $conn->error;
+                        
                     }
 
                     mysqli_close($conn);
