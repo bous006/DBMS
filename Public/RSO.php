@@ -98,6 +98,69 @@
                 <div class="tab-pane fade active in" id="service-one">
                     <h4>What is an RSO?</h4>
                     <p>An RSO is a Registered Student Organization (RSO). Organizations can be dedicated to a wide array of interests. If you can't find an RSO that matches your interests, create your own!</p>
+                    <h4>Current RSOs</h4>
+                    <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="service-one">
+                <h4>Events</h4>
+                     <div class="container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+
+                        <th>Description</th>
+
+                        <th>Admin Contact</th>
+
+                    
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                    
+                    $conn = new mysqli("localhost", "root", "root", "dbms");
+                    if ($conn->connect_errno) {
+                        echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
+                    }
+                    // Retrieve all the data from the "tblstudent" table
+                    $result = mysqli_query($conn, "SELECT * FROM rso") or die(mysql_error());
+                    // store the record of the "tblstudent" table into $row
+                    
+                    while ($row = mysqli_fetch_array($result)) {
+                    // Print out the contents of the entry
+
+                        echo '
+                        <tr>
+                            ';
+                            echo '
+                            <td>' . $row['rsoname'] . '</td>';
+                            echo '
+                            <td>' . $row['description'] . '</td>';
+                            echo '
+                            <td>' . $row['student_creator'] . '</td>';
+                            
+                            $curr_rsoid = $row['rsoid'];
+                            echo '<td>' . '<a href="rsoDetails.php?rsoid=' . $curr_rsoid . '">View RSO</a>' .'</td>';
+                           
+                           //if (!empty($_POST['view-submit']))
+                            //{
+                                //$var_value = $row['eventid'];
+                               // $_SESSION['selected_eventid'] = $var_value;
+                           // }
+                        }
+
+                        error_reporting(E_ALL);
+                        mysqli_close($conn);
+                        ?>
+
+                    </tbody>
+
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
                 </div>
                 <div class="tab-pane fade" id="service-two">
                     <h4>Register A RSO</h4>
@@ -108,7 +171,7 @@
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="registerDescRso">RSO Description</label>
-                            <input type="text" class="form-control" id="registerDescRso" placeholder="Last Name" name="registerDescRso">
+                            <input type="text" class="form-control" id="registerDescRso" placeholder="It is a cool rso." name="registerDescRso">
                         </fieldset>
                         <fieldset class="form-group">
                             <label for="registerAdminRso">Email Address of Admin</label>
@@ -174,7 +237,7 @@
                     $rsoName = $_POST["registerNameRso"];
                     $rsoDesc = $_POST["registerDescRso"];
 
-                    $sql = mysqli_query($conn, "INSERT INTO rso (student_creator, member1, member2, member3, member4, member5, rsoname, description)VALUES ('$student_creator','$member1','$member2', '$member3', '$member4', 'member5', 'rsoName', 'rsoDesc')") or die(mysqli_error($conn));
+                    $sql = mysqli_query($conn, "INSERT INTO rso (student_creator, member1, member2, member3, member4, member5, rsoname, description)VALUES ('$student_creator','$member1','$member2', '$member3', '$member4', '$member5', '$rsoName', '$rsoDesc')") or die(mysqli_error($conn));
 
                     $rsoid = mysqli_insert_id($conn);
 

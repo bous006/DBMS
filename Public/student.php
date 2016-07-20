@@ -122,7 +122,7 @@
             <!----><ul id="myTab" class="nav nav-tabs nav-justified">
                 <li class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-tree"></i> Basic Info</a>
                 </li>
-                <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-list"></i> Register As Student</a>
+                <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-list"></i> Register As Student or Admin</a>
                 </li>
             </ul>
 
@@ -149,26 +149,30 @@
 
                                     $conn = mysqli_connect("localhost","root","root", "dbms");
                     // Check connection
-                    if (mysqli_connect_errno())
-                    {
-                        echo "Failed to connect to my MySQL: " . mysqli_connect_error();
-                    }
+                                    if (mysqli_connect_errno())
+                                    {
+                                        echo "Failed to connect to my MySQL: " . mysqli_connect_error();
+                                    }
 
                                     $sql = "SELECT name FROM university";
-$result = $conn->query($sql);
+                                    $result = $conn->query($sql);
 
-                                    echo "<select name='selectSchool' id='selectSchool'>";
-
-                                    while ($row = mysql_fetch_array($result)) {
-                                        echo '<option value="'.$row["name"].'">'.$row["name"].'</option>';
-                                    }
-                                    echo "</select>";
+                                    
                                     ?>
-                                
-                            </div>
-                        </fieldset>                       
-                        <fieldset class="form-group">
-                            <label for="registerFirstStudent">First Name</label>
+
+                                </div>
+
+                                <select name="selectSchool">
+                                    <?php 
+                                    $sql = mysqli_query($conn, "SELECT name FROM university");
+                                    while ($row = mysqli_fetch_array($sql)){
+                                        echo "<option value=". $row['name'] .">" . $row['name'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </fieldset>                       
+                            <fieldset class="form-group">
+                                <label for="registerFirstStudent">First Name</label>
                             <input type="text" class="form-control" id="registerFirstStudent" placeholder="First Name" name="registerFirstStudent">
                         </fieldset>
                         <fieldset class="form-group">
@@ -182,6 +186,13 @@ $result = $conn->query($sql);
                         <fieldset class="form-group">
                             <label for="registerPasswordStudent">Password</label>
                             <input type="password" class="form-control" id="registerPasswordStudent" placeholder="Password" name="registerPasswordStudent">
+                        </fieldset>
+                        <fieldset>
+                            <label for="selectType">Type</label>
+                            <select class="form-control form-control-sm" id="selectType" name="selectType">
+                                <option>Student</option>
+                                <option>Admin</option>                                
+                            </select>
                         </fieldset>
                         <input id="submit" name="submit" type="submit" value="submit" class="btn btn-primary">
                     </form>
@@ -226,12 +237,13 @@ $result = $conn->query($sql);
                     $university_id = $_POST["selectSchool"];
                     $username = $_POST["registerEmailStudent"];
                     $passwordhash = $_POST["registerPasswordStudent"];
+                    $type = $_POST["selectType"];
 
-                    $sql = mysqli_query($conn, "INSERT INTO users (firstName, lastName, university_id, username, passwordhash, privilegeLevel)VALUES ('$first','$last','$university_id', '$username', '$passwordhash', '0')") or die(mysqli_error($conn));
+                    $sql = mysqli_query($conn, "INSERT INTO users (firstName, lastName, university_id, username, passwordhash, privilegeLevel, type)VALUES ('$first','$last','$university_id', '$username', '$passwordhash', '0', '$type')") or die(mysqli_error($conn));
 
                     $uid = mysqli_insert_id($conn);
 
-                    $sql = mysqli_query($conn, "INSERT INTO students (university_id, username, passwordhash) VALUES ('$university_id', '$username', '$passwordhash')") or die(mysqli_error($conn));
+                    $sql = mysqli_query($conn, "INSERT INTO students (university_id, username, passwordhash) VALUES ('$university_id', '$username', '$passwordhash')") or die();
 
                     if ($conn->multi_query($sql) === TRUE) {
                         echo "New records created successfully";
