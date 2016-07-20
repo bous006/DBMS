@@ -35,41 +35,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">College Event Planner</a>
+            <a class="navbar-brand" href="index.php">College Event Planner</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <!--<a href="#" data-toggle="modal" data-target="#myModal1">Sign In</a>-->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                    <ul id="login-dp" class="dropdown-menu">
-                        <li>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                        <div class="form-group">
-                                            <label class="sr-only" for="loginUserName">Username (Usually Email)</label>
-                                            <input type="text" class="form-control" id="loginUserName" placeholder="Username (Usually Email)" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="sr-only" for="loginPassword">Password</label>
-                                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
-                                            <div class="help-block text-right"><a href="">Forgot Password</a></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Remember Me
-                                            </label>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+            <ul class="nav navbar-nav navbar-right">                
                     <li>
                         <a href="student.php">Student Portal</a>
                     </li>
@@ -211,7 +181,7 @@
                     if ($conn->multi_query($sql) === TRUE) {
                         echo "New records created successfully";
                     } else {
-                        echo "Error: " . $sql . "<br>" . $conn->error;
+                        
                     }
 
                     mysqli_close($conn);
