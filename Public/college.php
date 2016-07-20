@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.pp">College Event Planner</a>
+            <a class="navbar-brand" href="index.php">College Event Planner</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -191,11 +191,13 @@
                     $city = $_POST["registerCityUniversity"];
                     $zip = $_POST["registerZipUniversity"];
 
-                    $sql = mysqli_query($conn, "INSERT INTO university (name, description, amount_stu, street, city, zip)VALUES ('$name','$description', '$amount_stu', '$street', '$city', '$zip')") or die(mysqli_error($conn));
+                    $sql = mysqli_query($conn, "INSERT INTO university (name, description, amount_stu, street, city, zip)VALUES ('$name','$description', '$amount_stu', '$street', '$city', '$zip')") or die();
 
                     $uid = mysqli_insert_id($conn);
 
-                    $sql = mysqli_query($conn, "INSERT INTO superadmins (firstname, lastname, username, passwordhash, university_id) VALUES ('$firstName', '$lastName', '$email', '$passwordhash, '$university_id')") or die(mysqli_error($conn));
+                    $sql = mysqli_query($conn, "INSERT INTO superadmins (firstname, lastname, username, passwordhash, university_ID) VALUES ('$firstName', '$lastName', '$email', '$passwordhash, '$name')") or die();
+
+                    $sql = mysqli_query($conn, "INSERT INTO user (firstname, lastname, username, passwordhash, university_id, privilegeLevel, type) VALUES ('$firstName', '$lastName', '$email', '$passwordhash, '$name', '3', 'SuperAdmin')") or die();
 
                     if ($conn->multi_query($sql) === TRUE) {
                         echo "New records created successfully";
